@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+  <script type="module" src="popup.js"></script>
+</head>
+<body>
+  <div class="header">YouTube Better</div>
+
+  <div class="setting-item column">
+    <label for="regionCode">Country code</label>
+    <div class="color-row">
+      <input type="text" id="regionCode" class="text-input" placeholder="DE" autocomplete="off" spellcheck="false">
+      <label class="switch">
+        <input type="checkbox" id="premiumToggle">
+        <span class="slider"></span>
+      </label>
+      <span>Premium</span>
+    </div>
+  </div>
+
+  <div class="setting-item column">
+    <span>Logo color</span>
+    <div class="color-row">
+      <label class="radio">
+        <input type="radio" name="colorMode" id="modeSolid" value="solid">
+        Solid
+      </label>
+      <label class="radio">
+        <input type="radio" name="colorMode" id="modeGradient" value="gradient">
+        Gradient
+      </label>
+      <label class="radio">
+        <input type="radio" name="colorMode" id="modeCustom" value="custom">
+        Custom
+      </label>
+    </div>
+    <div class="color-row" id="solidColors">
+      <input type="color" id="solidColor" title="Solid color">
+    </div>
+    <div class="color-row" id="gradientColors">
+      <input type="color" id="gradientColor1" title="Gradient color 1">
+      <input type="color" id="gradientColor2" title="Gradient color 2">
+      <label class="number-label">
+        Angle
+        <input type="number" id="gradientAngle" class="text-input number-input" min="0" max="360">
+      </label>
+    </div>
+    <div class="color-row" id="gradientColors2">
+      <label class="radio">
+        <input type="checkbox" id="gradientAnimate">
+        Spin
+      </label>
+      <label class="number-label">
+        Speed (s)
+        <input type="number" id="gradientSpeed" class="text-input number-input" min="0.2" max="30" step="0.1">
+      </label>
+    </div>
+    <div class="column-tight" id="customColors">
+      <input type="text" id="customFill" class="text-input" placeholder="fill value, e.g. url(#myGradient)" autocomplete="off" spellcheck="false">
+      <textarea id="customSvgCode" class="text-input textarea" rows="3" placeholder="raw SVG defs, e.g. &lt;linearGradient id=&quot;myGradient&quot;&gt;...&lt;/linearGradient&gt;" spellcheck="false"></textarea>
+    </div>
+  </div>
+
+  <div class="setting-item">
+    <span>Video stats (likes/dislikes)</span>
+    <label class="switch">
+      <input type="checkbox" id="dislikesToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="setting-item column">
+    <label for="searchPlaceholder">Search box text</label>
+    <input type="text" id="searchPlaceholder" class="text-input" placeholder="Search" autocomplete="off">
+  </div>
+
+  <div class="setting-item column">
+    <div class="color-row spread">
+      <span>Header glassmorphism</span>
+      <label class="switch">
+        <input type="checkbox" id="headerGlassToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="color-row" id="headerColors">
+      <label class="number-label">
+        Light
+        <input type="color" id="headerColorLight" title="Header color (light theme)">
+      </label>
+      <label class="number-label">
+        Dark
+        <input type="color" id="headerColorDark" title="Header color (dark theme)">
+      </label>
+      <label class="number-label">
+        Blur
+        <input type="number" id="headerBlur" class="text-input number-input" min="0" max="60">
+      </label>
+      <label class="number-label">
+        Alpha
+        <input type="number" id="headerOpacity" class="text-input number-input" min="0" max="1" step="0.05">
+      </label>
+    </div>
+    <div class="color-row" id="headerShape">
+      <label class="number-label">
+        Margin
+        <input type="number" id="headerMargin" class="text-input number-input" min="0" max="60">
+      </label>
+      <label class="number-label">
+        Radius
+        <input type="number" id="headerRadius" class="text-input number-input" min="0" max="60">
+      </label>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "action" : {
+    "default_popup" : "popup.html",
+    "icon_variants" : [
+      {
+        "any" : "symbol:appletv.fill"
+      }
+    ]
+  },
+  "browser_specific_settings" : {
+    "safari" : {
+      "prompt" : "Make Extension named Better YouTube. Add Menu with title Settings with torn on tumbler"
+    }
+  },
+  "content_scripts" : [
+    {
+      "js" : [
+        "content.js"
+      ],
+      "matches" : [
+        "*:\/\/*.youtube.com\/*"
+      ],
+      "run_at" : "document_end"
+    }
+  ],
+  "description" : "Enhance your YouTube experience: custom country code, ad removal, dislike counts, logo recoloring, search box text, and a glassmorphism header.",
+  "host_permissions" : [
+    "https:\/\/returnyoutubedislikeapi.com\/*"
+  ],
+  "icon_variants" : [
+    {
+      "any" : "symbol:appletv.fill"
+    }
+  ],
+  "manifest_version" : 3,
+  "name" : "Better YouTube",
+  "permissions" : [
+    "storage"
+  ],
+  "version" : "1.0"
+}
