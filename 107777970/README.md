@@ -29,7 +29,7 @@ This is a great way to see the *raw* output of the on-device model, prompt inclu
   ```
   /Users/<YourUser>/Library/Containers/com.apple.Safari/Data/Library/Safari/MagicExtensions/
   ```
-  It shows how Safari catalogs AI-generated extensions on disk.
+  It shows how Safari catalogs AI-generated extensions on disk. The iCloud sync data and account fields have been removed from this copy.
   > **Theory (unconfirmed):** Safari *may* update this database on its own after an extension folder is added to `MagicExtensions/`, so editing `Extensions.db` by hand might not be necessary. This hasn't been verified — treat it as a guess, not a fact.
 
 See the root [`README.md`](../README.md) for the full write-up: what AI-generated extensions are, where they're stored, how to edit them, and cross-platform notes.
