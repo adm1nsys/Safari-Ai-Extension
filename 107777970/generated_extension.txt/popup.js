@@ -1,5 +1,4 @@
 const DEFAULTS = {
-  premiumEnabled: false,
   regionCode: '',
 
   colorMode: 'solid',
@@ -43,7 +42,6 @@ function bindText(el, key, parse = (value) => value) {
 
 document.addEventListener('DOMContentLoaded', async () => {
   try {
-    const premiumToggle = document.getElementById('premiumToggle');
     const regionInput = document.getElementById('regionCode');
 
     const modeSolid = document.getElementById('modeSolid');
@@ -77,7 +75,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const settings = await browser.storage.local.get(DEFAULTS);
 
-    premiumToggle.checked = settings.premiumEnabled;
     regionInput.value = settings.regionCode;
 
     solidColorInput.value = settings.solidColor;
@@ -118,7 +115,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     setHeaderRowVisibility(settings.headerGlassEnabled);
 
-    bindCheckbox(premiumToggle, 'premiumEnabled');
     bindText(regionInput, 'regionCode');
 
     for (const radio of [modeSolid, modeGradient, modeCustom]) {

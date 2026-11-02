@@ -1,12 +1,11 @@
 // Content script for YouTube Better.
 // Applies settings stored in browser.storage.local: a custom country-code
-// label with an optional "Premium" suffix, ad removal, a recolored logo
+// label, a recolored logo
 // (solid, gradient with optional spin, or fully custom SVG fill), restored
 // dislike counts, a custom search box placeholder, and a glassmorphism
 // header redesign.
 
 const DEFAULTS = {
-  premiumEnabled: false,
   regionCode: '',
 
   colorMode: 'solid',
@@ -37,28 +36,8 @@ const GRADIENT_ID = 'byt-logo-gradient';
 const CUSTOM_DEFS_ID = 'byt-custom-defs';
 const LOGO_STYLE_ID = 'byt-logo-style';
 const LOGO_DEFAULT_FILL = '#ff0033';
-const PREMIUM_ADBLOCK_STYLE_ID = 'byt-premium-adblock-style';
 const HEADER_STYLE_ID = 'byt-header-style';
 const VOTE_FIX_STYLE_ID = 'byt-vote-fix-style';
-
-const AD_SELECTORS = [
-  '.video-ads',
-  '.ytp-ad-module',
-  '.ytp-ad-overlay-container',
-  '.ytp-ad-image-overlay',
-  'ytd-ad-slot-renderer',
-  'ytd-in-feed-ad-layout-renderer',
-  'ytd-display-ad-renderer',
-  'ytd-promoted-sparkles-web-renderer',
-  'ytd-promoted-video-renderer',
-  'ytd-companion-slot-renderer',
-  'ytd-banner-promo-renderer',
-  'ytd-statement-banner-renderer',
-  '#masthead-ad',
-  'ytd-ads-engagement-panel-content-renderer',
-  '[panel-target-id="engagement-panel-ads"]',
-  'panel-ad-header-image-lockup-view-model',
-].join(', ');
 
 const SEARCH_INPUT_SELECTOR = 'input.ytSearchboxComponentInput, input[name="search_query"]';
 const SEARCH_SURFACE_SELECTOR = [
@@ -249,8 +228,8 @@ function applyLogoColor() {
   `;
 }
 
-function applyRegionAndPremium() {
-  const active = Boolean(settings.regionCode) || settings.premiumEnabled;
+function applyRegion() {
+  const active = Boolean(settings.regionCode);
   document.querySelectorAll('#country-code').forEach((el) => {
     if (!active) {
       if (el.dataset.bytBase !== undefined) {
@@ -264,43 +243,11 @@ function applyRegionAndPremium() {
       el.dataset.bytBase = el.textContent.trim();
     }
     const base = settings.regionCode || el.dataset.bytBase;
-    const text = settings.premiumEnabled ? `${base} Premium` : base;
+    const text = base;
     if (el.textContent.trim() !== text) {
       el.textContent = text;
     }
   });
-}
-
-function applyPremiumAdBlockCss() {
-  const existing = document.getElementById(PREMIUM_ADBLOCK_STYLE_ID);
-  if (settings.premiumEnabled) {
-    if (!existing) {
-      const style = document.createElement('style');
-      style.id = PREMIUM_ADBLOCK_STYLE_ID;
-      style.textContent = `${AD_SELECTORS} { display: none !important; }`;
-      document.documentElement.append(style);
-    }
-  } else if (existing) {
-    existing.remove();
-  }
-}
-
-function removeAdElements() {
-  if (!settings.premiumEnabled) return;
-  document.querySelectorAll(AD_SELECTORS).forEach((el) => el.remove());
-}
-
-function skipAdsIfPlaying() {
-  if (!settings.premiumEnabled) return;
-  const skipButton = document.querySelector('.ytp-ad-skip-button, .ytp-ad-skip-button-modern');
-  if (skipButton) {
-    skipButton.click();
-    return;
-  }
-  const adVideo = document.querySelector('.ad-showing video');
-  if (adVideo && !Number.isNaN(adVideo.duration)) {
-    adVideo.currentTime = adVideo.duration;
-  }
 }
 
 function applySearchPlaceholder() {
@@ -979,9 +926,7 @@ function ensureStatsPanel() {
 }
 
 function applyAll() {
-  applyPremiumAdBlockCss();
-  removeAdElements();
-  applyRegionAndPremium();
+  applyRegion();
   applyLogoColor();
   applySearchPlaceholder();
   applyHeaderDesign();
@@ -1025,7 +970,6 @@ async function init() {
   });
 
   document.addEventListener('yt-navigate-finish', refreshDislikes);
-  setInterval(skipAdsIfPlaying, 500);
   // Defensive fallback in case a navigation isn't caught by yt-navigate-finish.
   setInterval(refreshDislikes, 2000);
 }

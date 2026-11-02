@@ -23,7 +23,7 @@
       "run_at" : "document_end"
     }
   ],
-  "description" : "Enhance your YouTube experience: custom country code, ad removal, dislike counts, logo recoloring, search box text, and a glassmorphism header.",
+  "description" : "Enhance your YouTube experience: custom country code, dislike counts, logo recoloring, search box text, and a glassmorphism header.",
   "host_permissions" : [
     "https:\/\/returnyoutubedislikeapi.com\/*"
   ],

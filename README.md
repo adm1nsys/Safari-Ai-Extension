@@ -105,6 +105,8 @@ To move an extension to another device, place its folder into that device's:
 
 Functionally it changes the YouTube country code, recolors the logo (solid/gradient/custom SVG), toggles like/dislike stats, sets the search placeholder, and adds a glassmorphism header. Details aside, the point is that **all of this was reachable through an AI-generated extension** you can read and edit.
 
+The generated extension also had a "Premium" switch that hid YouTube ads; it has been removed from both copies in this repository before publishing.
+
 ---
 
 ## Disclaimer
