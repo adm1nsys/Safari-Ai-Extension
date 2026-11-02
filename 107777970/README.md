@@ -8,7 +8,7 @@ When you submit feedback on an AI-generated extension — using the **"Looks goo
 /Users/<YourUser>/Library/Containers/com.apple.Feedback.DraftingExtension/Data/tmp/TemporaryItems/NSIRD_DraftingExtension-macOS_XXXXXX/Drafts/FB/107777970/
 ```
 
-The files here are copied straight out of that staging area, **before any hand-editing** — so this is the AI output as generated, with one exception: a "Premium" switch that hid YouTube ads has been removed before publishing.
+The files here are copied straight out of that staging area, **before any hand-editing** — so this is the AI output, with one feature trimmed before publishing.
 
 ## What's inside
 
