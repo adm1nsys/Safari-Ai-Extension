@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+._*
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Local secrets
+.env
+*.local
+
+# Safari / iCloud sync leftovers next to Extensions.db
+*.db-shm
+*.db-wal
